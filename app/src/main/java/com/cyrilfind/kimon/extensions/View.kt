@@ -18,9 +18,17 @@ suspend inline fun View.flash() {
 }
 
 fun View.unhighlight() {
-    nullableBackground?.alpha = 255
+    nullableBackground?.let {
+        it.alpha = 255
+    } ?: run {
+        visibility = View.VISIBLE
+    }
 }
 
 fun View.highlight() {
-    nullableBackground?.alpha = 50
+    if (nullableBackground != null) {
+        nullableBackground!!.alpha = 50
+    } else {
+        visibility = View.INVISIBLE
+    }
 }
