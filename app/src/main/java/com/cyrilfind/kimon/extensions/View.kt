@@ -1,10 +1,15 @@
 package com.cyrilfind.kimon.extensions
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import kotlinx.coroutines.delay
 
 val HIGHLIGHT_INTERVAL: Long
     get() = 700L
+
+var View.nullableBackground: Drawable?
+    get() = background
+    set(value) { background = value }
 
 suspend inline fun View.flash() {
     highlight()
@@ -13,9 +18,9 @@ suspend inline fun View.flash() {
 }
 
 fun View.unhighlight() {
-    background?.alpha = 255
+    nullableBackground?.alpha = 255
 }
 
 fun View.highlight() {
-    background?.alpha = 50
+    nullableBackground?.alpha = 50
 }
