@@ -13,9 +13,9 @@ suspend inline fun View.flash() {
 }
 
 fun View.unhighlight() {
-    background.alpha = 255
+    background?.alpha = 255
 }
 
 fun View.highlight() {
-    background.alpha = 50
+    background?.alpha = 50
 }
