@@ -13,9 +13,9 @@ suspend inline fun View.flash() {
 }
 
 fun View.unhighlight() {
-    visibility = View.VISIBLE
+    background.alpha = 255
 }
 
 fun View.highlight() {
-    visibility = View.INVISIBLE
+    background.alpha = 50
 }
