@@ -7,9 +7,7 @@ import kotlinx.coroutines.delay
 val HIGHLIGHT_INTERVAL: Long
     get() = 700L
 
-var View.nullableBackground: Drawable?
-    get() = background
-    set(value) { background = value }
+fun View.nullableBackground(): Drawable? = background
 
 suspend inline fun View.flash() {
     highlight()
@@ -18,16 +16,18 @@ suspend inline fun View.flash() {
 }
 
 fun View.unhighlight() {
-    nullableBackground?.let {
+    nullableBackground()?.let {
         it.alpha = 255
     } ?: run {
         visibility = View.VISIBLE
     }
 }
 
+
 fun View.highlight() {
+    val nullableBackground = nullableBackground()
     if (nullableBackground != null) {
-        nullableBackground!!.alpha = 50
+        nullableBackground.alpha = 50
     } else {
         visibility = View.INVISIBLE
     }
